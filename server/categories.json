@@ -1,0 +1,10 @@
+{
+  "communication": {
+	"title": "Customer Communication",
+	"subtitle": "These questions relate to how clear and effective communication is throughout your customer interactions."
+  },
+  "workflow": {
+	"title": "Workflow Efficiency",
+	"subtitle": "These questions relate to the clarity, speed, and automation of your internal processes."
+  }
+}

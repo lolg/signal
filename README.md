@@ -27,6 +27,7 @@ Put simply: **stay in outcome‑land**; Signal handles the form mechanics.
 - Output: `server/responses.json` (array)
 - Mobile-friendly by default — the card layout stacks gracefully on phones, so respondents can rate outcomes on the go.  
 - Share via one-time token links — just email each participant a unique URL (`?token=abc123`) and Signal handles the rest.
+- Tool-chain friendly — tokens carry the respondent ID; all other customer meta-data stays in your CRM. Join on respondentId after export for flexibility.
 
 Built with:
 

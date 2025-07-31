@@ -1,218 +1,154 @@
 # Signal — lightweight ODI / JTBD survey collector
 
-**Signal** is a tiny, self-hosted survey app for Outcome-Driven Innovation (ODI) and Jobs-To-Be-Done (JTBD) work.  
-Instead of “questions,” it stores **outcome statements** in `outcomes.json` and turns them into two prompts in the UI:
+**Signal** is a tiny, self-hosted survey app for Outcome-Driven Innovation (ODI) and Jobs-To-Be-Done (JTBD) research.
 
-*How important is it that you can…?*  
-*How satisfied are you with your ability to…?*
+## 🤔 Why Signal?
 
-That mirrors ODI practice: outcomes are capabilities to be improved, not trivia to be quizzed.
+| Problem | Signal’s antidote |
+|---------|-------------------|
+| *“I spend hours turning outcomes into survey questions.”* | **Outcome-in, Question-out** — just list outcomes in `outcomes.json`; the app auto‑phrases the two rating prompts. |
+| *“Respondents get lost in a 100‑row matrix.”* | **Category‑aware flow** — add a `category` ID and Signal pages outcomes one logical section at a time, with a progress bar. |
+| *“Raw exports need a weekend of VLOOKUP.”* | **Analysis‑ready JSON** — each rating is saved as a clean row in `responses.json`, perfect for PCA, clustering, opportunity scoring. |
+| *“We already capture meta-data elsewhere.”* | **Token links** — use your CRM / panel to mint tokens + meta; Signal just handles the ratings. |
 
-### Why Signal?
+Put simply: **stay in outcome‑land**; Signal handles the form mechanics.
 
-* **Zero-bloat setup** — drop in a JSON file, share a tokenised link, start collecting data.  
-* **Analysis-ready output** — one row per outcome per respondent → perfect for PCA, clustering, and opportunity scoring (see the full workflow [here](https://redlandroad.com/2024/05/27/practical-outcome-driven-innovation/)).  
-* **Plays well with existing pipelines** — use your own CRM / panel tool to generate tokens and meta-data; Signal just captures the ratings.
+---
 
-Put simply: it strips the busy-work out of ODI surveys so you can spend more cycles on insight, not instruments.
+## ✨ What you get
+
+- Zero‑bloat setup — drop in JSON, share link, collect data  
+- Clean two‑column 5‑point scale (Importance / Satisfaction)  
+- Category paging + progress indicators  
+- Welcome & thank‑you screens (uses respondent name if provided)  
+- Single‑use token access  
+- Dynamic time estimate  
+- Flat‑file config, no DB required  
+- Output: `server/responses.json` (array)
 
 Built with:
-- ⚛️ React (Vite)
-- 🐍 Python Flask
-- 📄 Flat-file config (JSON)
-- 🎯 Token-based access
 
-Here’s what the survey looks like:
+- ⚛️ React (Vite)  
+- 🐍 Flask (API)  
+- 📄 JSON config files  
+- 🔑 Token auth header
+
+---
+
+## 🖼 UI Preview
 
 ![Survey UI screenshot](screenshots/survey-example.png)
 
 ---
 
-## ✨ Features
-
-- Welcome and thank-you screens with respondent name
-- Outcome question paging by category
-- Clean card UI
-- Token-secured access per respondent
-- Dynamic time estimate
-- Configurable via simple JSON files
-- JSONL output for post-processing and analysis
-
----
-
-## 🚀 Getting Started
-
-### 1. Clone the repo
+## 🚀 Quick start
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/signal.git
 cd signal
-```
 
-### 2. Install dependencies
-
-#### Backend (Flask):
-
-From your project root (signal/):
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
+# 🔧 backend
+python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
-```
+python server/app.py
 
-#### Frontend (React):
-
-```bash
+# 🎨 frontend
 cd client
 npm install
-```
-
----
-
-## 🧪 Running locally
-
-### Terminal 1 – Start the Flask API
-
-```bash
-cd server
-source ../venv/bin/activate
-python3 app.py
-```
-
-### Terminal 2 – Start the React app
-
-```bash
-cd client
 npm run dev
 ```
 
-Then open: [http://localhost:5173/?token=abc123](http://localhost:5173/?token=abc123)
+Visit `http://localhost:5173/?token=abc123`, start rating, then grab `server/responses.json`.
 
 ---
 
-## 🔐 Access model
-
-Configure each respondent in `server/tokens.json`:
+## 🔐 Token model
 
 ```json
 {
-  "abc123": {
-	"respondentId": "r001",
-	"name": "Alice Becker"
-  }
+  "abc123": { "respondentId": "r001", "name": "Alice Becker" },
+  "def456": { "respondentId": "r002" }
 }
 ```
 
-Distribute private survey links:  
-`https://yourdomain.com/?token=abc123`
+Distribute links such as `https://yourdomain.com/?token=abc123`
 
 ---
 
-## 🧾 Configuration Files
+## 📂 Config files
 
-| File                | Description                      |
-|---------------------|----------------------------------|
-| `survey.json`       | Outcome statements               |
-| `categories.json`   | Category names + groupings       |
-| `survey-meta.json`  | Survey title and subtitle        |
-| `strings.json`      | All UI labels, buttons, etc.     |
-| `tokens.json`       | Maps tokens to respondent data   |
+| File | Purpose |
+|------|---------|
+| `outcomes.json` | Outcome statements + category IDs |
+| `categories.json` | Category title / subtitle text |
+| `survey-meta.json` | Global survey title & subtitle |
+| `strings.json` | UI labels & button text |
+| `tokens.json` | Token → respondent map |
 
 ---
 
-## 💾 Output Format
+## 💾 Output
 
-Stored in `server/responses.jsonl` (1 row per outcome):
+`server/responses.json`
 
 ```json
-{"respondentId":"r001","outcomeId":"q1","outcomeImportance":4,"outcomeSatisfaction":3}
+[
+  {
+	"timestamp": "2025-07-31T12:34:56Z",
+	"respondentId": "r001",
+	"outcomeId": "42",
+	"importance": 4,
+	"satisfaction": 2
+  }
+]
 ```
-
-This is ideal for PCA, clustering, and scoring in Python/R.
 
 ---
 
-## 📦 Folder Structure
-
+## 📦 Project layout
 ```
 signal/
-├── client/         # React frontend
-│   ├── src/        # App.jsx, App.css
-│   ├── index.html
-│   └── vite.config.js
-├── server/         # Flask backend
+├── client/
+│   └── src/App.jsx
+├── server/
 │   ├── app.py
-│   ├── survey.json
-│   ├── tokens.json
+│   ├── outcomes.json
 │   ├── categories.json
+│   ├── survey-meta.json
 │   ├── strings.json
-│   └── survey-meta.json
-├── requirements.txt
-├── README.md
-└── .gitignore
+│   └── tokens.json
+└── responses.json
 ```
 
 ---
 
-## 📄 .gitignore example
+## ☁️ Free deployment
 
-```gitignore
-# Python
-venv/
-__pycache__/
-*.pyc
+**Backend → Render**
 
-# Node
-node_modules/
-dist/
+| Setting | Value |
+|---------|-------|
+| Runtime | Python 3 |
+| Build   | `pip install -r requirements.txt` |
+| Start   | `python app.py` |
+| Env var | `PORT=5000` |
 
-# Runtime data
-server/responses.jsonl
-.env
-.DS_Store
-```
-
----
-
-## 🛰 Deployment (Free Hosting)
-
-### Host Flask on Render (https://render.com)
-
-1. Sign in to [Render](https://render.com)
-2. Create a new **Web Service**
-3. Connect your GitHub repo
-4. Choose:
-   - Runtime: **Python 3**
-   - Build command: `pip install -r requirements.txt`
-   - Start command: `python app.py`
-5. Add `PORT=5000` in environment variables
-
-### Frontend
-
-You can deploy the React frontend to:
-
-- ✅ **Netlify** (recommended for static builds)
-- ✅ **Vercel** (fast, free)
-- ✅ **GitHub Pages** (if you export a static build)
+**Frontend → Netlify / Vercel / GH Pages**
 
 ```bash
-cd client
-npm run build
+cd client && npm run build
+# deploy contents of client/dist
 ```
-
-Then deploy `client/dist` to your hosting provider of choice.
 
 ---
 
-## 🧠 Inspired by
+## 📚 Learn the full workflow
 
-- Strategyn's ODI research
-- John Cutler's outcome-centric thinking
-- Just enough tooling
+See **[Practical Outcome‑Driven Innovation](https://redlandroad.com/2024/05/27/practical-outcome-driven-innovation/)** for the PCA + clustering notebook.
 
 ---
 
 ## 🪪 License
 
-MIT — use freely, contribute optionally.
+MIT — fork, tweak, ship.  
+Smaller feedback loops → better products.

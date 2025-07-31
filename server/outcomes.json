@@ -1,22 +1,22 @@
 {
-  "questions": [
+  "outcomes": [
 	{
-	  "id": "q1",
+	  "id": "1",
 	  "text": "Minimize discomfort and confusion in customer communications.",
-	  "category": "communication"
+	  "category": "comm"
 	},
 	{
-	  "id": "q2",
+	  "id": "2",
 	  "text": "Reduce the effort required to find relevant information.",
-	  "category": "communication"
+	  "category": "comm"
 	},
 	{
-	  "id": "q3",
+	  "id": "3",
 	  "text": "Improve clarity and consistency in team processes.",
 	  "category": "workflow"
 	},
 	{
-	  "id": "q4",
+	  "id": "4",
 	  "text": "Increase automation of routine tasks.",
 	  "category": "workflow"
 	}

@@ -1,27 +1,50 @@
-from flask import Flask, request, jsonify
-import os
-import json
+import os, json
+from flask import Flask, jsonify, request
 from datetime import datetime
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+RESP_FILE = os.path.join(BASE_DIR, "responses.json")
 
 
-# Load token map (token → respondent metadata)
-def load_tokens():
-	with open(os.path.join(BASE_DIR, "tokens.json")) as f:
+def load_responses():
+	if not os.path.exists(RESP_FILE):
+		return []
+	with open(RESP_FILE) as f:
 		return json.load(f)
+
+
+def save_responses(all_rows):
+	with open(RESP_FILE, "w") as f:
+		json.dump(all_rows, f, indent=2)
 
 
 @app.get("/api/survey")
 def get_survey():
-	with open(os.path.join(BASE_DIR, "survey.json")) as f:
+	with open(os.path.join(BASE_DIR, "outcomes.json")) as f:
 		return jsonify(json.load(f))
+
+
+@app.get("/api/categories")
+def get_categories():
+	with open(os.path.join(BASE_DIR, "categories.json")) as f:
+		return jsonify(json.load(f))
+
 
 @app.get("/api/strings")
 def get_strings():
 	with open(os.path.join(BASE_DIR, "strings.json")) as f:
 		return jsonify(json.load(f))
+
+
+@app.get("/api/survey-meta")
+def get_survey_meta():
+	with open(os.path.join(BASE_DIR, "survey-meta.json")) as f:
+		return jsonify(json.load(f))
+
 
 @app.get("/api/respondent")
 def get_respondent():
@@ -41,17 +64,6 @@ def get_respondent():
 		"respondentId": respondent.get("respondentId")
 	})
 
-@app.get("/api/categories")
-def get_categories():
-	with open(os.path.join(BASE_DIR, "categories.json")) as f:
-		return jsonify(json.load(f))
-
-
-@app.get("/api/survey-meta")
-def get_survey_meta():
-	with open(os.path.join(BASE_DIR, "survey-meta.json")) as f:
-		return jsonify(json.load(f))
-
 
 @app.post("/api/submit")
 def submit_response():
@@ -59,34 +71,32 @@ def submit_response():
 	if not token:
 		return jsonify({"error": "Missing token"}), 400
 
-	tokens = load_tokens()
-	respondent_data = tokens.get(token)
-	if not respondent_data:
+	with open(os.path.join(BASE_DIR, "tokens.json")) as f:
+		tokens = json.load(f)
+
+	respondent = tokens.get(token)
+	if not respondent:
 		return jsonify({"error": "Invalid token"}), 403
-
-	respondent_id = respondent_data.get("respondentId")
-	respondent_name = respondent_data.get("name", "")
-
-	if not respondent_id:
-		return jsonify({"error": "Missing respondentId for token"}), 400
 
 	data = request.get_json()
 	answers = data.get("answers", [])
 
-	output_path = os.path.join(BASE_DIR, "responses.jsonl")
-	with open(output_path, "a") as f:
-		for answer in answers:
-			row = {
-				"timestamp": datetime.utcnow().isoformat(),
-				"respondentId": respondent_id,
-				"outcomeId": answer["questionId"],
-				"outcomeImportance": answer["importance"],
-				"outcomeSatisfaction": answer["satisfaction"]
-			}
-			f.write(json.dumps(row) + "\n")
+	new_rows = []
+	for a in answers:
+		new_rows.append({
+			"timestamp": datetime.utcnow().isoformat(),
+			"respondentId": respondent["respondentId"],
+			"outcomeId": a["outcomeId"],
+			"importance": a["importance"],
+			"satisfaction": a["satisfaction"]
+		})
 
-	return jsonify({"status": "saved", "name": respondent_name})
+	all_rows = load_responses()
+	all_rows.extend(new_rows)
+	save_responses(all_rows)
+
+	return jsonify({"status": "saved", "name": respondent.get("name", "")})
 
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run(debug=True, port=5000)

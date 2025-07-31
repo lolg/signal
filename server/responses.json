@@ -1,0 +1,30 @@
+[
+  {
+    "timestamp": "2025-07-31T14:47:51.486576",
+    "respondentId": "p001",
+    "outcomeId": "1",
+    "importance": 1,
+    "satisfaction": 3
+  },
+  {
+    "timestamp": "2025-07-31T14:47:51.486597",
+    "respondentId": "p001",
+    "outcomeId": "2",
+    "importance": 1,
+    "satisfaction": 2
+  },
+  {
+    "timestamp": "2025-07-31T14:47:51.486603",
+    "respondentId": "p001",
+    "outcomeId": "3",
+    "importance": 1,
+    "satisfaction": 3
+  },
+  {
+    "timestamp": "2025-07-31T14:47:51.486608",
+    "respondentId": "p001",
+    "outcomeId": "4",
+    "importance": 2,
+    "satisfaction": 2
+  }
+]

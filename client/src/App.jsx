@@ -27,7 +27,7 @@ export default function App() {
   const [tokenError, setTokenError] = useState("");
   const [surveyMeta, setSurveyMeta] = useState({ title: "", subtitle: "" });
   const [strings, setStrings] = useState({});
-  const [questionsByCategory, setQuestionsByCategory] = useState({});
+  const [outcomesByCategory, setOutcomesByCategory] = useState({});
   const [categories, setCategories] = useState({});
   const [categoryOrder, setCategoryOrder] = useState([]);
   const [ratings, setRatings] = useState({});
@@ -55,17 +55,16 @@ export default function App() {
       .then(([survey, cats, meta, stringsData]) => {
         const grouped = {};
         let count = 0;
-        survey.questions.forEach(q => {
+        survey.outcomes.forEach(q => {
           if (!grouped[q.category]) grouped[q.category] = [];
           grouped[q.category].push(q);
           count += 1;
         });
-        count = count * 2;
-        setQuestionsByCategory(grouped);
+        setOutcomesByCategory(grouped);
         setCategoryOrder(Object.keys(grouped));
         setCategories(cats);
         setSurveyMeta(meta);
-        setQuestionCount(count);
+        setQuestionCount(count * 2); // both importance and satisfaction
         setStrings(stringsData);
       });
 
@@ -78,21 +77,21 @@ export default function App() {
       });
   }, []);
 
-  const setRating = (questionId, type, value) => {
+  const setRating = (outcomeId, type, value) => {
     setRatings(prev => ({
       ...prev,
-      [questionId]: {
-        ...(prev[questionId] || {}),
+      [outcomeId]: {
+        ...(prev[outcomeId] || {}),
         [type]: value
       }
     }));
   };
 
   const currentCategory = categoryOrder[currentPage];
-  const currentQuestions = questionsByCategory[currentCategory] || [];
+  const currentOutcomes = outcomesByCategory[currentCategory] || [];
 
   const validatePage = () => {
-    return currentQuestions.every(q => {
+    return currentOutcomes.every(q => {
       const r = ratings[q.id];
       return r && r.importance && r.satisfaction;
     });
@@ -110,7 +109,7 @@ export default function App() {
       return nextPage;
     });
   };
-  
+
   const handlePrevious = () => {
     setStatus("");
     setCurrentPage((p) => {
@@ -126,8 +125,8 @@ export default function App() {
       return;
     }
 
-    const response = Object.entries(ratings).map(([questionId, data]) => ({
-      questionId,
+    const response = Object.entries(ratings).map(([outcomeId, data]) => ({
+      outcomeId,
       importance: data.importance,
       satisfaction: data.satisfaction
     }));
@@ -155,7 +154,7 @@ export default function App() {
   if (tokenError) {
     return (
       <div className="odi-container">
-      <div style={{ height: "60px" }}></div> 
+        <div style={{ height: "60px" }}></div>
         <h2>{t("accessErrorTitle")}</h2>
         <p className="error-message">{t("accessErrorMessage")}</p>
       </div>
@@ -192,9 +191,7 @@ export default function App() {
             {t("thankYouNameLine").replace("{name}", respondentName)}
           </p>
         )}
-        {!respondentName && (
-          <p className="final-subtitle">{t("thankYouAnonLine")}</p>
-        )}
+        {!respondentName && <p className="final-subtitle">{t("thankYouAnonLine")}</p>}
         <p>{t("thankYouMessage")}</p>
       </div>
     );
@@ -215,7 +212,7 @@ export default function App() {
       )}
 
       <div className="stacked-questions">
-        {currentQuestions.map((q) => (
+        {currentOutcomes.map((q) => (
           <div key={q.id} className="question-card">
             <div className="scale-pair">
               <div className="scale-group">

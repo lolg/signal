@@ -8,6 +8,10 @@ Built with:
 - 📄 Flat-file config (JSON)
 - 🎯 Token-based access
 
+Here’s what the survey looks like:
+
+![Survey UI screenshot](screenshots/survey-example.png)
+
 ---
 
 ## ✨ Features

@@ -38,3 +38,7 @@
 {"timestamp": "2025-07-30T20:55:15.920788", "respondentId": "p001", "outcomeId": "q2", "outcomeImportance": 2, "outcomeSatisfaction": 3}
 {"timestamp": "2025-07-30T20:55:15.920810", "respondentId": "p001", "outcomeId": "q3", "outcomeImportance": 1, "outcomeSatisfaction": 4}
 {"timestamp": "2025-07-30T20:55:15.920825", "respondentId": "p001", "outcomeId": "q4", "outcomeImportance": 3, "outcomeSatisfaction": 4}
+{"timestamp": "2025-07-31T08:39:23.727199", "respondentId": "p001", "outcomeId": "q2", "outcomeImportance": 3, "outcomeSatisfaction": 2}
+{"timestamp": "2025-07-31T08:39:23.727259", "respondentId": "p001", "outcomeId": "q1", "outcomeImportance": 2, "outcomeSatisfaction": 5}
+{"timestamp": "2025-07-31T08:39:23.727272", "respondentId": "p001", "outcomeId": "q3", "outcomeImportance": 3, "outcomeSatisfaction": 5}
+{"timestamp": "2025-07-31T08:39:23.727279", "respondentId": "p001", "outcomeId": "q4", "outcomeImportance": 1, "outcomeSatisfaction": 3}

@@ -1,9 +1,20 @@
-# Signal – An Outcome-Driven Survey Tool
+# Signal — lightweight ODI / JTBD survey collector
 
-Signal is a (very) lightweight, extensible survey app designed for Outcome-Driven Innovation (ODI) and Jobs-To-Be-Done (JTBD) research. It collects structured respondent data using importance and satisfaction ratings for clearly defined outcomes.
+**Signal** is a tiny, self-hosted survey app for Outcome-Driven Innovation (ODI) and Jobs-To-Be-Done (JTBD) work.  
+Instead of “questions,” it stores **outcome statements** in `outcomes.json` and turns them into two prompts in the UI:
 
-It’s super easy to configure, follows established research practices, and produces data that can be used for PCA and cluster analysis — as described here:  
-👉 https://redlandroad.com/2024/05/27/practical-outcome-driven-innovation/
+*How important is it that you can…?*  
+*How satisfied are you with your ability to…?*
+
+That mirrors ODI practice: outcomes are capabilities to be improved, not trivia to be quizzed.
+
+### Why Signal?
+
+* **Zero-bloat setup** — drop in a JSON file, share a tokenised link, start collecting data.  
+* **Analysis-ready output** — one row per outcome per respondent → perfect for PCA, clustering, and opportunity scoring (see the full workflow [here](https://redlandroad.com/2024/05/27/practical-outcome-driven-innovation/)).  
+* **Plays well with existing pipelines** — use your own CRM / panel tool to generate tokens and meta-data; Signal just captures the ratings.
+
+Put simply: it strips the busy-work out of ODI surveys so you can spend more cycles on insight, not instruments.
 
 Built with:
 - ⚛️ React (Vite)

@@ -1,6 +1,9 @@
 # Signal – An Outcome-Driven Survey Tool
 
-Signal is a (very) lightweight, extensible survey app designed for Outcome-Driven Innovation (ODI) and Jobs-To-Be-Done (JTBD) research. It collects structured respondent data using importance and satisfaction ratings for defined outcomes.
+Signal is a (very) lightweight, extensible survey app designed for Outcome-Driven Innovation (ODI) and Jobs-To-Be-Done (JTBD) research. It collects structured respondent data using importance and satisfaction ratings for clearly defined outcomes.
+
+It’s super easy to configure, follows established research practices, and produces data that can be used for PCA and cluster analysis — as described here:  
+👉 https://redlandroad.com/2024/05/27/practical-outcome-driven-innovation/
 
 Built with:
 - ⚛️ React (Vite)

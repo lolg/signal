@@ -60,6 +60,7 @@ export default function App() {
           grouped[q.category].push(q);
           count += 1;
         });
+        count = count * 2;
         setQuestionsByCategory(grouped);
         setCategoryOrder(Object.keys(grouped));
         setCategories(cats);

@@ -6,9 +6,17 @@
   --accent-hover:  #005ecb; /* darker hover / active */
   --accent-light:  #e5f0ff; /* pale hover background */
 
-  --text-color:    #111;
-  --label-color:   #666;
+  --text-color:    #000;
+  --label-color:   #333;
   --font-stack:    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  
+  --fs-base: 1rem;           /* body size */
+  --fs-sm:   calc(var(--fs-base) * 0.875);   /* 0.875rem (14px)  */
+  --fs-md:   calc(var(--fs-base) * 1.125);   /* 1.125rem (18px)  */
+  --fs-lg:   calc(var(--fs-base) * 1.25);    /* 1.25rem  (20px)  */
+  --fs-xl:   calc(var(--fs-base) * 1.5);     /* 1.5rem   (24px)  */
+  --fs-2xl:  calc(var(--fs-base) * 1.8);     /* 1.8rem   (29px)  */
+  --fs-3xl:  calc(var(--fs-base) * 2.2);     /* 2.2rem   (35px)  */
 }
 
 /* ================================================================
@@ -19,7 +27,12 @@ body {
   padding: 0;
   background-color: #f5f5f7;     /* Apple-style window grey */
   font-family: var(--font-stack);
+  font-size: var(--fs-base);
   color: var(--text-color);
+}
+
+p {
+  font-size: var(--fs-base);
 }
 
 .odi-container {
@@ -27,12 +40,12 @@ body {
   width: 100%;
   margin: 3rem auto;
   padding: 0 1rem;
-  font-size: 1.2rem;
+  font-size: var(--fs-md); 
   box-sizing: border-box;
 }
 
 h2 {
-  font-size: 2.4rem;
+  font-size: var(--fs-2xl);
   font-weight: 600;
   margin-bottom: 2rem;
   text-align: left;
@@ -42,11 +55,22 @@ h2 {
    2. Category header
    ================================================================ */
 .category-header {
+  font-size: var(--fs-lg);
   text-align: left;
   margin-bottom: 2rem;
 }
-.category-header h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.3rem; }
-.category-header p  { font-size: 1rem; color: var(--label-color); }
+
+.category-header h3 { 
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.category-header p  {
+  font-size: var(--fs-sm);
+  font-size: 1rem;
+  color: var(--label-color);
+}
 
 /* ================================================================
    3. Question cards & layout
@@ -80,8 +104,20 @@ h2 {
   .scale-group .question-text { font-size: 1rem; margin-bottom: .75rem; }
 }
 
-.framed-prompt { font-size: 1.1rem; font-weight: 500; color: #6e6e73; margin-bottom: .4rem; }
-.question-text { font-size: 1.4rem; font-weight: 600; color: #000; margin-bottom: 1rem; }
+.framed-prompt {
+  display: block;
+  font-size: var(--fs-base);
+  margin-bottom: .4rem;
+  padding-bottom: 0.2rem;
+  color: var(--label-color)
+ }
+ 
+.question-text { 
+  font-size: var(--fs-base);
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 1rem;
+}
 
 /* ================================================================
    4. Scale options (radio)

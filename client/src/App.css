@@ -258,7 +258,10 @@ h2 {
   padding-top: 4rem;             /* keep your existing spacing          */
 }
 
-.final-screen h2   { margin: 0 0 1rem; }
+.final-screen h2   { 
+  text-align: center;
+  margin: 0 0 1rem;
+}
 .final-screen p    { margin: 0 0 1.25rem; }
 
 .final-subtitle,

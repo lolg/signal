@@ -290,20 +290,12 @@ export default function App() {
         )}
         <span className="status">{status}</span>
       </div>
-
-      <div className="progress-fixed">
-        <div className="progress-text">
-          Page {currentPage + 1} of {categoryOrder.length}
+      {/* Floating progress pill – only while survey is running */}
+      {isStarted && !isSubmitted && (
+        <div className="progress-pill">
+          {currentPage + 1}/{categoryOrder.length}
         </div>
-        <div className="progress-bar">
-          <div
-            className="progress-fill"
-            style={{
-              width: `${((currentPage + 1) / categoryOrder.length) * 100}%`
-            }}
-          ></div>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

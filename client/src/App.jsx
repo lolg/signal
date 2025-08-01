@@ -173,13 +173,11 @@ export default function App() {
           {t("categoriesAndCountLine")
             .replace("{questions}", questionCount)        // <- total ratings = 2 × outcomes
             .replace("{cats}", categoryOrder.length)}
-        </p>
-        
-        <p className="survey-subtitle">{t("categoryContextLine")}</p>
-        
-        <p>
+            {" "}
+            {t("categoryContextLine")}
+        </p>        
+        <p className="survey-subtitle">
           {t("estimatedTimeLine")
-            .replace("{count}", questionCount)
             .replace("{minutes}", estimatedMinutes)
             .replace("{plural}", estimatedMinutes !== 1 ? "s" : "")}
         </p>

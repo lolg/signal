@@ -10,7 +10,7 @@
   "thankYouMessage": "Your answers have been saved. You may now close this window.",
   "thankYouNameLine": "We appreciate your time, {name}.",
   "thankYouAnonLine": "We appreciate your time.",
-  "estimatedTimeLine": "This survey contains {count} questions and should take approximately {minutes} minute{plural} to complete.",
+  "estimatedTimeLine": "This survey should take approximately {minutes} minute{plural} to complete.",
   "surveyTitleFallback": "Pulse Survey",
   "importancePrompt": "How important is it to you that you are able to...",
   "satisfactionPrompt": "How satisfied are you with your ability to...",

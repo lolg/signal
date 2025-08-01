@@ -249,6 +249,7 @@ h2 {
 
 /* put near the end of App.css */
 .final-screen {
+  text-align: center;
   display: flex;                 /* optional: centres vertically too   */
   flex-direction: column;
   align-items: center;

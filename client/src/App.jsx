@@ -39,6 +39,9 @@ export default function App() {
   const [questionCount, setQuestionCount] = useState(0);
 
   const t = (key) => strings[key] || `[${key}]`;
+  
+  const importanceOptions   = strings.importanceLabels   || [];
+  const satisfactionOptions = strings.satisfactionLabels || [];
 
   useEffect(() => {
     

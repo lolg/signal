@@ -15,5 +15,19 @@
   "importancePrompt": "How important is it to you that you are able to...",
   "satisfactionPrompt": "How satisfied are you with your ability to...",
   "categoriesAndCountLine": "You’ll answer {questions} questions across {cats} categories.",
-  "categoryContextLine": "Categories are broad themes that help keep things organised."
+  "categoryContextLine": "Categories are broad themes that help keep things organised.",
+  "importanceLabels": [
+	  "Not important",
+	  "Somewhat important",
+	  "Important",
+	  "Very important",
+	  "Extremely important"
+	],
+	"satisfactionLabels": [
+	  "Not satisfied",
+	  "Somewhat satisfied",
+	  "Satisfied",
+	  "Very satisfied",
+	  "Extremely satisfied"
+	]
 }

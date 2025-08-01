@@ -11,3 +11,6 @@ client/dist/
 .DS_Store
 *.log
 .env
+
+# Runtime survey results
+server/responses.json

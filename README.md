@@ -7,7 +7,7 @@
 | Problem | Signal’s antidote |
 |---------|-------------------|
 | *“I spend hours turning outcomes into survey questions.”* | **Outcome-in, Question-out** — just list outcomes in `outcomes.json`; the app auto‑phrases the two rating prompts. |
-| *“Respondents get lost in a 100‑row matrix.”* | **Category‑aware flow** — add a `category` ID and Signal pages outcomes one logical section at a time, with a progress bar. |
+| *“Respondents get lost in a 100‑row matrix.”* | **Category‑aware flow** — add a `category` ID and Signal pages outcomes one logical section at a time, with a progress indicator. |
 | *“Raw exports need a weekend of VLOOKUP.”* | **Analysis‑ready JSON** — each rating is saved as a clean row in `responses.json`, perfect for PCA, clustering, opportunity scoring. |
 | *“We already capture meta-data elsewhere.”* | **Token links** — use your CRM / panel to mint tokens + meta; Signal just handles the ratings. |
 

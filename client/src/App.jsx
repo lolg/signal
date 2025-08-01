@@ -169,7 +169,7 @@ export default function App() {
         {respondentName && <p className="survey-subtitle">Welcome, {respondentName}.</p>}
         {surveyMeta.subtitle && <p className="survey-subtitle">{surveyMeta.subtitle}</p>}
         {!surveyMeta.subtitle && <p className="survey-subtitle">{t("welcomeSubtitleFallback")}</p>}
-        <p>
+        <p className="survey-subtitle">
           {t("estimatedTimeLine")
             .replace("{count}", questionCount)
             .replace("{minutes}", estimatedMinutes)
@@ -197,16 +197,21 @@ export default function App() {
     );
   }
 
-  return (
-    <div className="odi-container">
-      <h2>{surveyMeta.title || t("surveyTitleFallback")}</h2>
-      {currentPage === 0 && surveyMeta.subtitle && (
-        <p className="survey-subtitle">{surveyMeta.subtitle}</p>
-      )}
+    return (
+      <div className="odi-container">
+        {/* Show title + subtitle only before the survey starts */}
+        {!isStarted && (
+          <>
+            <h2>{surveyMeta.title || t("surveyTitleFallback")}</h2>
+            {surveyMeta.subtitle && (
+              <p className="survey-subtitle">{surveyMeta.subtitle}</p>
+            )}
+          </>
+        )}
 
       {currentCategory && categories[currentCategory] && (
         <div className="category-header">
-          <h3>{categories[currentCategory].title}</h3>
+          <h2>{categories[currentCategory].title}</h2>
           <p>{categories[currentCategory].subtitle}</p>
         </div>
       )}

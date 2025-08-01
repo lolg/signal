@@ -41,6 +41,11 @@ export default function App() {
   const t = (key) => strings[key] || `[${key}]`;
 
   useEffect(() => {
+    
+    fetch("/api/strings")
+    .then(res => res.json())
+    .then(setStrings);
+    
     if (!token) {
       setTokenError("Missing or invalid link. Please check your survey invitation.");
       return;

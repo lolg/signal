@@ -1,10 +1,10 @@
 {
   "comm": {
 	"title": "Communication",
-	"subtitle": "How your team interacts, shares, and listens."
+	"subtitle": "These questions relate to how your team interacts, shares, and listens."
   },
   "workflow": {
 	"title": "Workflow",
-	"subtitle": "The day-to-day processes behind getting work done."
+	"subtitle": "These questions relate to the day-to-day processes behind getting work done."
   }
 }

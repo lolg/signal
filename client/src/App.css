@@ -2,9 +2,9 @@
    0. Global design tokens – EDIT JUST THESE THREE LINES
    ================================================================ */
 :root {
-  --accent-color:  #007aff; /* primary tint */
-  --accent-hover:  #005ecb; /* darker hover / active */
-  --accent-light:  #e5f0ff; /* pale hover background */
+  --accent-color:  #6b25f3; /* primary tint */
+  --accent-hover:  color(display-p3 0.501 0.387 0.761); /* darker hover / active */
+  --accent-light:  color(display-p3 0.905 0.893 0.933); /* pale hover background */
 
   --text-color:    #000;
   --label-color:   #333;

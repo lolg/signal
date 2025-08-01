@@ -170,6 +170,14 @@ export default function App() {
         {surveyMeta.subtitle && <p className="survey-subtitle">{surveyMeta.subtitle}</p>}
         {!surveyMeta.subtitle && <p className="survey-subtitle">{t("welcomeSubtitleFallback")}</p>}
         <p className="survey-subtitle">
+          {t("categoriesAndCountLine")
+            .replace("{questions}", questionCount)        // <- total ratings = 2 × outcomes
+            .replace("{cats}", categoryOrder.length)}
+        </p>
+        
+        <p className="survey-subtitle">{t("categoryContextLine")}</p>
+        
+        <p>
           {t("estimatedTimeLine")
             .replace("{count}", questionCount)
             .replace("{minutes}", estimatedMinutes)

@@ -210,6 +210,11 @@ h2 {
   z-index: 1000;
 }
 
+/* put this near the end of App.css */
+.welcome-screen .primary-button {
+  margin-top: 2.5rem;   /* adjust ↑ or ↓ to taste */
+}
+
 /* ================================================================
    7. Misc screens & messages
    ================================================================ */

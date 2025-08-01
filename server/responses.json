@@ -26,5 +26,33 @@
     "outcomeId": "4",
     "importance": 2,
     "satisfaction": 2
+  },
+  {
+    "timestamp": "2025-08-01T08:30:45.590149",
+    "respondentId": "p001",
+    "outcomeId": "1",
+    "importance": 3,
+    "satisfaction": 5
+  },
+  {
+    "timestamp": "2025-08-01T08:30:45.590171",
+    "respondentId": "p001",
+    "outcomeId": "2",
+    "importance": 2,
+    "satisfaction": 1
+  },
+  {
+    "timestamp": "2025-08-01T08:30:45.590175",
+    "respondentId": "p001",
+    "outcomeId": "3",
+    "importance": 3,
+    "satisfaction": 1
+  },
+  {
+    "timestamp": "2025-08-01T08:30:45.590179",
+    "respondentId": "p001",
+    "outcomeId": "4",
+    "importance": 3,
+    "satisfaction": 3
   }
 ]
